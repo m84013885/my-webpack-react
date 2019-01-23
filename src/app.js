@@ -1,5 +1,4 @@
 'use strict'
-import React from 'react'
 import stores from './stores'
 import { Provider } from 'mobx-react' // 供应stores
 

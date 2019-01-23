@@ -1,5 +1,4 @@
 'use strict'
-import React from 'react'
 import { observer, inject } from 'mobx-react'
 import style from './style.css'
 @inject('store') @observer class Main extends React.Component {
@@ -15,7 +14,7 @@ import style from './style.css'
   render () {
     return (
       <div className={style.test}>
-     123
+      123
       </div>
     )
   }
