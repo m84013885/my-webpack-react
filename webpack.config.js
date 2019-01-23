@@ -52,19 +52,43 @@ module.exports = {
     },
     // 4.0 之后分代码
     optimization: {
-        minimizer: [
-        new UglifyJsPlugin({
-            cache: true,
-            parallel: true,
-            sourceMap: true,
-            uglifyOptions: {
-                compress: { drop_console: true },
-                output: { comments: false }
+        runtimeChunk: { name: () => { return 'manifest' } },
+        splitChunks: {
+            chunks: 'initial',
+            minSize: 30000,
+            minChunks: 1,
+            maxAsyncRequests: 2,
+            maxInitialRequests: 2,
+            automaticNameDelimiter: '-',
+            name: true,
+            cacheGroups: {
+              vendors: {
+                test: /\/node_modules\//,
+                priority: -10,
+              },
+              'react-vendor': {
+                test: (module) => /react/.test(module.context),
+                priority: 1,
+              },
+              default: {
+                minChunks: 2,
+                priority: -20,
+                reuseExistingChunk: true,
+              }
             }
-        }),
-        new OptimizeCSSAssetsPlugin({})
-        ],
-        runtimeChunk: { name: () => { return 'manifest' } }
+          },
+          minimizer: [
+            new UglifyJsPlugin({
+                cache: true,
+                parallel: true,
+                sourceMap: true,
+                uglifyOptions: {
+                    compress: { drop_console: true },
+                    output: { comments: false }
+                }
+            }),
+            new OptimizeCSSAssetsPlugin({})
+            ]
     },
     plugins: [
         new CleanWebpackPlugin(['dist']),
