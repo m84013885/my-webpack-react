@@ -3,7 +3,6 @@ import stores from './stores'
 import { Provider } from 'mobx-react' // 供应stores
 
 import Main from './router/main'
-
 class App extends React.Component {
   constructor (props) {
     super(props)

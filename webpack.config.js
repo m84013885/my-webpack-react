@@ -7,40 +7,11 @@ const miniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 
 module.exports = {
+    performance: { maxEntrypointSize: 400000 },
     entry: {
         app: ["./src/index.js"]
     },
     devtool: 'false',
-    plugins: [
-        new CleanWebpackPlugin(['dist']),
-        new HtmlWebpackPlugin({
-            template: path.resolve(__dirname, './index.html')
-        }),
-        new webpack.ProvidePlugin({
-            React: 'react',
-            ReactDom: 'react-dom',
-            PropTypes: 'prop-types'
-        }),
-        new miniCssExtractPlugin({
-            chunkFilename: "./css/index.css"
-        })
-    ],
-    // 4.0 之后分代码
-    optimization: {
-        minimizer: [
-        new UglifyJsPlugin({
-            cache: true,
-            parallel: true,
-            sourceMap: true,
-            uglifyOptions: {
-            compress: { drop_console: true },
-            output: { comments: false }
-            }
-        }),
-        new OptimizeCSSAssetsPlugin({})
-        ],
-        runtimeChunk: { name: () => { return 'manifest' } }
-    },
     output: {
         filename: './js/[name].bundle.[hash:5].js',
         path: path.resolve(__dirname, 'dist'),
@@ -79,5 +50,35 @@ module.exports = {
             }
         ]
     },
+    // 4.0 之后分代码
+    optimization: {
+        minimizer: [
+        new UglifyJsPlugin({
+            cache: true,
+            parallel: true,
+            sourceMap: true,
+            uglifyOptions: {
+                compress: { drop_console: true },
+                output: { comments: false }
+            }
+        }),
+        new OptimizeCSSAssetsPlugin({})
+        ],
+        runtimeChunk: { name: () => { return 'manifest' } }
+    },
+    plugins: [
+        new CleanWebpackPlugin(['dist']),
+        new HtmlWebpackPlugin({
+            template: path.resolve(__dirname, './index.html')
+        }),
+        new webpack.ProvidePlugin({
+            React: 'react',
+            ReactDom: 'react-dom',
+            PropTypes: 'prop-types'
+        }),
+        new miniCssExtractPlugin({
+            chunkFilename: "./css/index.css"
+        })
+    ],
     mode: 'production' // 设置mode
 };
