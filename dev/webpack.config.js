@@ -1,17 +1,17 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const webpack = require('webpack')
-
-module.exports = {
+const { routers } = require('../config.json')
+const webpackConfig = {
     entry: {
-        app:["./src/index.js",'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000']
+        // index:[`./src/router/index/index.js`,`webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000`]
     },
     devtool: 'inline-source-map',
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
-        new HtmlWebpackPlugin({
-            template: path.resolve(__dirname, '../index.html')
-        }),
+        // new HtmlWebpackPlugin({
+        //     template: path.resolve(__dirname, '../src/router/index/index.html')
+        // }),
         new webpack.ProvidePlugin({
             React: 'react',
             ReactDom: 'react-dom',
@@ -53,4 +53,22 @@ module.exports = {
         ]
     },
     mode: 'development' // 设置mode
-};
+}
+
+routers.map((item, index) => {
+    const {
+        name,
+        template
+    } = item
+    const tempSrc = path.resolve(__dirname, `../src/router/${template}/index.html`)
+    const plugin = new HtmlWebpackPlugin({
+        filename: `${template}.html`,
+        title: name,
+        template: tempSrc,
+        inject: true,
+        chunks: [template]
+    })
+    webpackConfig.entry[template] = [`./src/router/${template}/index.js`,`webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000`]
+    webpackConfig.plugins.push(plugin)
+})
+module.exports = webpackConfig

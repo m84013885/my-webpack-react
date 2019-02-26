@@ -1,5 +1,5 @@
 'use strict'
-import './utills/resize'
+import '../../utills/resize'
 import App from './app'
 
 if(module.hot){

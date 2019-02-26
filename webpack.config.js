@@ -5,15 +5,16 @@ const webpack = require('webpack')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const miniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
+const { routers } = require('./config.json')
 
-module.exports = {
+const webpackConfig ={
     performance: { maxEntrypointSize: 400000 },
     entry: {
-        app: ["./src/index.js"]
+        // app: ["./src/index.js"]
     },
     devtool: 'false',
     output: {
-        filename: './js/[name].bundle.[hash:5].js',
+        filename: './js/[name].[chunkhash:5].js',
         path: path.resolve(__dirname, 'dist'),
         publicPath: ''
     },
@@ -61,6 +62,7 @@ module.exports = {
             maxInitialRequests: 2,
             automaticNameDelimiter: '-',
             name: true,
+            name: 'react',
             cacheGroups: {
               vendors: {
                 test: /\/node_modules\//,
@@ -90,19 +92,35 @@ module.exports = {
             new OptimizeCSSAssetsPlugin({})
             ]
     },
+    // externals: ["react", "react-dom","mobx","mobx-react"], // string（精确匹配）
     plugins: [
         new CleanWebpackPlugin(['dist']),
-        new HtmlWebpackPlugin({
-            template: path.resolve(__dirname, './index.html')
-        }),
+        // new HtmlWebpackPlugin({
+        //     template: path.resolve(__dirname, './index.html')
+        // }),
         new webpack.ProvidePlugin({
             React: 'react',
             ReactDom: 'react-dom',
             PropTypes: 'prop-types'
         }),
         new miniCssExtractPlugin({
-            chunkFilename: "./css/index.css"
+            chunkFilename: "./css/[name].[chunkhash:5].css"
         })
     ],
     mode: 'production' // 设置mode
-};
+}
+routers.map((item) => {
+    const {
+        template
+    } = item
+    // 每个页面使用一个entry配置
+    const routerScript = [path.resolve(__dirname, `./src/router/${template}/index.js`)]
+    const plugin = new HtmlWebpackPlugin({
+        filename: `${template}.html`,
+        template: path.resolve(__dirname, `./src/router/${template}/index.html`),
+        chunks: ['manifest','react',template]
+    })
+    webpackConfig.entry[template] = routerScript
+    webpackConfig.plugins.push(plugin)
+})
+module.exports = webpackConfig

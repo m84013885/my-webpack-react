@@ -10,7 +10,7 @@ import style from './style.css'
     }
   }
   componentWillMount () {
-    
+
   }
   render () {
     return (
