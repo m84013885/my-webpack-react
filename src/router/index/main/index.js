@@ -9,7 +9,7 @@ import style from './style.css'
 
     }
   }
-  componentWillMount () {
+  componentDidMount () {
 
   }
   render () {
