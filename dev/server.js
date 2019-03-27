@@ -16,10 +16,10 @@ app.use(webpackDevMiddleware(compiler, {
   progress: true,
   inline: true,
   hot: true
-}));
+}))
 app.use(WebpackHotMiddleware(compiler))
 // Serve the files on port 3000.
 app.listen(3000, function () {
-  console.log('Example app listening on port 3000!\n');
+  console.log('Example app listening on port 3000!\n')
   childProcess.exec(`open http://${IP}:3000/`)
-});
+})
