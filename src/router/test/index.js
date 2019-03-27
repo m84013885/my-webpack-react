@@ -1,12 +1,13 @@
+/* eslint-disable */
 'use strict'
 import '../../utills/resize'
-import App from './app'
+import Enter from './enter'
 
-if(module.hot){
+if (module.hot) {
   module.hot.accept()
 }
 const main = function () {
-  ReactDom.render(<App/>, document.getElementById('main'))
+  ReactDom.render(<Enter/>, document.getElementById('main'))
 }
 window.onload = function () {
   main()

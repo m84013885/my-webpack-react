@@ -1,15 +1,14 @@
 'use strict'
 import {
   observable,
-  action,
-  computed
+  action
 } from 'mobx'
 
 // 请求
 class Store {
   @observable payBox=true
   @action payBoxhide = () => {
-    this.payBox=true
+    this.payBox = true
   }
 }
 const store = new Store()

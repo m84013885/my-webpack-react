@@ -1,6 +1,7 @@
 'use strict'
 import { observer, inject } from 'mobx-react'
 import style from './style.css'
+import { View } from '../../../components/src'
 
 @inject('store') @observer class Main extends React.Component {
   static propTypes = {
@@ -23,9 +24,9 @@ import style from './style.css'
   }
   render () {
     return (
-      <div className={style.test}>
+      <View className={style.test}>
         131
-      </div>
+      </View>
     )
   }
 }
