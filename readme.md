@@ -9,6 +9,10 @@
 ## 2019-3-27
 ### 增加自定义组件与自定义方法（自定义组件：View,App,ScrollView。自定义方法：window.Qapp.showToast,window.Qapp.copy)
 
+## 2019-4-2
+### 优化常用组件与方法（优化内容：ScrollView，优化方法：window.Qapp.copy)
+### 增加特殊组件（特殊组件：circle)
+
 ### 组件
 
 ## App组件
