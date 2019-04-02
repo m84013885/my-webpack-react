@@ -23,11 +23,8 @@ import { View, ScrollView } from '../../../components/src'
     // 状态码
   }
   copy () {
-    window.Qapp.copy.setCopy({
-      text: '123',
-      success: () => {
-        console.log(1)
-      }
+    window.Qapp.showToast({
+      content: '123'
     })
   }
   render () {

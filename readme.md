@@ -87,6 +87,7 @@
 | content | string  | null | 提示文字 | 是 |
 | theme | number | 0 | 主体（黑底白字 0/白底黑字 1）| 否 |
 | time | number | 2000 | 指定xx毫秒消失时间| 否 |
+| zIndex | number | auto | 层级关系 | 否 |
 
 #### 2. copy 函数（copy function)
 由 ``` window.Qapp.copy.setCopy(object)``` 来把指定的字符设置进剪切板中。

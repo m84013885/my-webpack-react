@@ -6,7 +6,8 @@ class Toast extends React.Component {
   state = {
     toastText: '',
     toastState: 0,
-    toastTheme: 0
+    toastTheme: 0,
+    zIndex: 'auto'
   }
   constructor (props) {
     super(props)
@@ -23,9 +24,10 @@ class Toast extends React.Component {
     if (!obj) { this.setState({ toastState: 0 }) }
     else {
       const toastText = obj.content
+      const zIndex = obj.zIndex || 'auto'
       const toastTheme = obj.theme || 0
       const toastTime = obj.time || 2000
-      this.setState({ toastState: 1, toastText, toastTheme })
+      this.setState({ toastState: 1, toastText, toastTheme, zIndex })
       this._toastTime = toastTime
       if (this._timeFlag) {
         clearTimeout(this._timeFlag)
@@ -48,10 +50,10 @@ class Toast extends React.Component {
     }
   }
   render () {
-    const { toastState, toastTheme, toastText } = this.state
+    const { toastState, toastTheme, toastText, zIndex } = this.state
     const cn = toastState === 0 ? style.toastBox : `${style.toastBox} ${style.toastShow}`
     return (
-      <View className={cn} transitionEnd={this._onTransitionEnd}>
+      <View className={cn} transitionEnd={this._onTransitionEnd} style={{ zIndex: zIndex }}>
         <View className={THEME[toastTheme]} > {toastText} </View>
       </View>
     )
