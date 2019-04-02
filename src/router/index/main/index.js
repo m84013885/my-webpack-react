@@ -1,7 +1,7 @@
 'use strict'
 import { observer, inject } from 'mobx-react'
 import style from './style.css'
-import { View, ScrollView } from '../../../components/src'
+import { View, ScrollView, Circle } from '../../../components/src'
 
 @inject('store') @observer class Main extends React.Component {
   static propTypes = {
@@ -28,14 +28,23 @@ import { View, ScrollView } from '../../../components/src'
     })
   }
   render () {
+    const config = {
+      percent: 80,
+      lineWidth: 10
+    }
     return (
-      <ScrollView className={style.test}>
-        <View>1</View>
-        <View>1</View>
-        <View>1</View>
-        <View>1</View>
-        <View tap={this.copy}>1345</View>
-      </ScrollView>
+      <View>
+        <ScrollView className={style.test}>
+          <View>1</View>
+          <View>%</View>
+          <View>1</View>
+          <View>1</View>
+          <View tap={this.copy}>1345</View>
+          <View className={style.canvasBox}>
+            <Circle className={style.canvas} percent={config.percent} lineWidth={config.lineWidth}/>
+          </View>
+        </ScrollView>
+      </View>
     )
   }
 }

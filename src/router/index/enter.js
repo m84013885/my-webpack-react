@@ -1,9 +1,10 @@
 'use strict'
 import stores from './stores'
 import { Provider } from 'mobx-react' // 供应stores
-import { App } from '../../components/src'
+import { App, View } from '../../components/src'
 
 import Main from './main'
+
 class Enter extends React.Component {
   constructor (props) {
     super(props)

@@ -99,3 +99,21 @@
 | text | string  | "" | 需要复制的文字 | 是 |
 | success | func  | null | 成功回调，第一个参数是当前需要复制字符串 | 否 |
 | error | func  | null | 失败回调，第一个参数是当前需要复制字符串 | 否 |
+
+### 特殊组件
+
+## circle组件
+----
+canvas制作的圆形进度条，传入的className的css样式决定了字体的样式以及圆圈的样式。
+
+### Prop
+----
+| 参数名字 | 值类型 | 默认值  | 说明 |  是否必需 |
+|---------|---------|--------- |---------|---------|
+| className | string |  null | canvas样式 | 否 |
+| percent | number |  50 | 百分比 | 否 |
+| lineWidth | number | 4 | 外圈宽度 | 否 |
+| lineColor | string | '#ddd' | 外圈宽度颜色 | 否 |
+| lineIn | bool | true | 是否显示内圈 | 否 |
+| lineInColor | string | '#fff' | 内圈颜色 | 否 |
+| step | number | 1 | 初始化速度 | 否 |
