@@ -89,7 +89,7 @@
 | time | number | 2000 | 指定xx毫秒消失时间| 否 |
 
 #### 2. copy 函数（copy function)
-由 ``` window.Qapp.copy(object)``` 来把指定的字符设置进剪切板中。
+由 ``` window.Qapp.copy.setCopy(object)``` 来把指定的字符设置进剪切板中。
 
 ```object``` 参数  
 

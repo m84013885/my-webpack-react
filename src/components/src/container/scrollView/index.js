@@ -4,7 +4,6 @@ import View from '../view'
 import IScroll from '../../config/iscroll-probe'
 import device from '../../config/device'
 
-IScroll = IScroll || window.IScroll
 const TYPE = [IScroll.utils.ease.elastic, IScroll.utils.ease.quadratic, IScroll.utils.ease.circular, IScroll.utils.ease.back, IScroll.utils.ease.bounce]
 class ScrollView extends React.Component {
   static propTypes = {

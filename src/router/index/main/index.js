@@ -1,7 +1,7 @@
 'use strict'
 import { observer, inject } from 'mobx-react'
 import style from './style.css'
-import { View } from '../../../components/src'
+import { View, ScrollView } from '../../../components/src'
 
 @inject('store') @observer class Main extends React.Component {
   static propTypes = {
@@ -22,11 +22,23 @@ import { View } from '../../../components/src'
   state = {
     // 状态码
   }
+  copy () {
+    window.Qapp.copy.setCopy({
+      text: '123',
+      success: () => {
+        console.log(1)
+      }
+    })
+  }
   render () {
     return (
-      <View className={style.test}>
-        131
-      </View>
+      <ScrollView className={style.test}>
+        <View>1</View>
+        <View>1</View>
+        <View>1</View>
+        <View>1</View>
+        <View tap={this.copy}>1345</View>
+      </ScrollView>
     )
   }
 }

@@ -4,8 +4,7 @@ import CopyItem from './copy'
 class Copy extends React.Component {
   ref = React.createRef()
   componentDidMount () {
-    const copyItem = new CopyItem(this.ref.current)
-    window.Qapp.copy = copyItem.setCopy
+    window.Qapp.copy = new CopyItem(this.ref.current)
   }
   render () {
     return (
