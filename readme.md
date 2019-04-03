@@ -1,10 +1,4 @@
-# 多(单)页面webpack+react+mobx
-
-#### 所有包都是目前最新的
-
-### 从单页面现在变为可多页面同时打包
-### 注意：现在问题就在于压缩,目前压缩还要继续，应该还会有优化的空间
-### 增加了eslint
+# 多(单)页面webpack+react+mobx（内含eslint）
 
 ## 2019-3-27
 ### 增加自定义组件与自定义方法（自定义组件：View,App,ScrollView。自定义方法：window.Qapp.showToast,window.Qapp.copy)
@@ -13,6 +7,8 @@
 ### 优化常用组件与方法（优化内容：ScrollView，优化方法：window.Qapp.copy)
 ### 增加特殊组件（特殊组件：circle)
 
+## 2019-4-3
+### webpack新增图片压缩
 ----
 ### 组件
 
