@@ -30,7 +30,7 @@ const webpackConfig = {
       },
       {
         test: /\.css$/,
-        exclude: /(node_modules|bower_components)/,
+        exclude: /(swiper|node_modules|bower_components)/,
         use: [
           miniCssExtractPlugin.loader,
           'css-loader?modules&localIdentName=_[local]_[hash:base64:5]',
@@ -41,6 +41,14 @@ const webpackConfig = {
               config: { path: path.resolve(__dirname, 'dev/postcss.config.js') }
             }
           }
+        ]
+      },
+      {
+        test: /\.css$/,
+        include: /(swiper)/,
+        use: [
+          miniCssExtractPlugin.loader,
+          'css-loader'
         ]
       },
       {

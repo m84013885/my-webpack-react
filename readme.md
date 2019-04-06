@@ -76,6 +76,45 @@
 | contextMenu | func | null | 上下文菜单事件 |否 |
 | tapStopPropagation | bool | false | 防止tap事件穿透(当处于ScrollView内是不需要设置该值) | 否 |
 
+## Swiper组件
+----
+Swiper组件，需要引入swiper.min.css文件(可以本地下载后引入)
+```css
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.2/css/swiper.min.css"/>
+```
+**注意：**里面只可以放<Swiper-Item/>组件
+### Prop
+----
+| 参数名字 | 值类型 | 默认值  | 说明 |  是否必需 |
+|---------|---------|----------|---------|---------|
+| className| string | swiper-container| 该组件的样式类名 | 否 |
+| autoplay| boolean |  false | 是否自动切换 | 否 |
+| interval| number |  3000 | 自动切换时间间隔(ms) | 否 |
+| loop| boolean |  false | 是否采用衔接滑动,循环播放 | 否 |
+| vertical| boolean |  false | 滑动方向是否为纵向 | 否 |
+| speed| number |  300 | 切换速度(ms) | 否 |
+| current| number |  0 | 初始化时滑块的索引 | 否 |
+| showIndicatorDots| boolean |  false | 是否显示面板指示点 | 否 |
+| indicatorClass|string| null | 指示点样式类名 | 否 |
+| indicatorActiveClass|string| null | 选中指示点样式类名 | 否 |
+| onTap | func |  null | 滑块点击事件,返回当前swiper实例对象,可通过swiper.realIndex获取当前滑块索引 | 否 |
+| onSlideChange| func |  null | 滑块切换事件,返回当前swiper实例对象,可通过swiper.realIndex获取当前滑块索引 | 否 |
+
+## SwiperItem组件
+仅可放置在<Swiper>组件中
+实例代码：
+
+```javascript
+<Swiper autoplay={true}>
+  <SwiperItem>
+    <View className={style.swiperItem}>滑块1</View>
+  </SwiperItem >
+  <SwiperItem>
+    <View className={style.swiperItem}>滑块2</View>
+  </SwiperItem >
+</Swiper>
+```
+
 ### 方法
 
 #### 1. toast 遮罩（toast mask）

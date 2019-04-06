@@ -1,7 +1,7 @@
 'use strict'
 import { observer, inject } from 'mobx-react'
 import style from './style.css'
-import { View, ScrollView, Circle } from '../../../components/src'
+import { View, ScrollView, Circle,Swiper,SwiperItem } from '../../../components/src'
 
 @inject('store') @observer class Main extends React.Component {
   static propTypes = {
@@ -44,6 +44,10 @@ import { View, ScrollView, Circle } from '../../../components/src'
             <Circle className={style.canvas} percent={config.percent} lineWidth={config.lineWidth}/>
           </View>
         </ScrollView>
+        <Swiper className={style.swiper} autoplay={true}>
+          <SwiperItem>1</SwiperItem>
+          <SwiperItem>2</SwiperItem>
+        </Swiper>
       </View>
     )
   }
