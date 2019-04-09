@@ -12,7 +12,11 @@
 
 ## 2019-4-6
 ### 新增swiper组件(直接引入的方式)
+
+## 2019-4-9
+### ScrollView组件新增上下拉刷新的回调方法
 ----
+
 ### 组件
 
 ## App组件
@@ -46,6 +50,8 @@
 | scrollCancel | func | null | 滚动取消执行事件 | 否 |
 | getScrollControl | func | null | 返回一个可控制滚动的函数 | 否
 | mustScroll | bool | false | 和bounce配合使用，在子元素不满一页的情况下是否还能启用滚动 | 否
+| scrollDownControl | func | false | 下拉回调方法(页面下拉至少40高度才执行)，为防止重复执行，1秒内执行一次 | 否
+| scrollUpControl | func | false | 上拉回调方法，为防止重复执行，1秒内执行一次 | 否
 
 ## View组件
 ----

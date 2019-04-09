@@ -1,7 +1,7 @@
 'use strict'
 import { observer, inject } from 'mobx-react'
 import style from './style.css'
-import { View, ScrollView, Circle,Swiper,SwiperItem } from '../../../components/src'
+import { View, ScrollView, Circle, Swiper, SwiperItem } from '../../../components/src'
 
 @inject('store') @observer class Main extends React.Component {
   static propTypes = {
@@ -27,6 +27,9 @@ import { View, ScrollView, Circle,Swiper,SwiperItem } from '../../../components/
       content: '123'
     })
   }
+  scrollDownControl = () => {
+    console.log('下拉刷新')
+  }
   render () {
     const config = {
       percent: 80,
@@ -34,9 +37,57 @@ import { View, ScrollView, Circle,Swiper,SwiperItem } from '../../../components/
     }
     return (
       <View>
-        <ScrollView className={style.test}>
+        <ScrollView className={style.test} scrollDownControl={this.scrollDownControl}>
           <View>1</View>
           <View>%</View>
+          <View>1</View>
+          <View>1</View>
+          <View>1</View>
+          <View>1</View>
+          <View>1</View>
+          <View>1</View>
+          <View>1</View>
+          <View>1</View>
+          <View>1</View>
+          <View>1</View>
+          <View>1</View>
+          <View>1</View>
+          <View>1</View>
+          <View>1</View>
+          <View>1</View>
+          <View>1</View>
+          <View>1</View>
+          <View>1</View>
+          <View>1</View>
+          <View>1</View>
+          <View>1</View>
+          <View>1</View>
+          <View>1</View>
+          <View>1</View>
+          <View>1</View>
+          <View>1</View>
+          <View>1</View>
+          <View>1</View>
+          <View>1</View>
+          <View>1</View>
+          <View>1</View>
+          <View>1</View>
+          <View>1</View>
+          <View>1</View>
+          <View>1</View>
+          <View>1</View>
+          <View>1</View>
+          <View>1</View>
+          <View>1</View>
+          <View>1</View>
+          <View>1</View>
+          <View>1</View>
+          <View>1</View>
+          <View>1</View>
+          <View>1</View>
+          <View>1</View>
+          <View>1</View>
+          <View>1</View>
           <View>1</View>
           <View>1</View>
           <View tap={this.copy}>1345</View>

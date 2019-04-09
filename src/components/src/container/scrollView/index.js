@@ -23,6 +23,8 @@ class ScrollView extends React.Component {
     getRef: PropTypes.func,
     getScrollControl: PropTypes.func,
     getIScroll: PropTypes.func,
+    scrollDownControl: PropTypes.func,
+    scrollUpControl: PropTypes.func,
     mustScroll: PropTypes.bool
   }
   static defaultProps = {
@@ -42,8 +44,12 @@ class ScrollView extends React.Component {
     getRef: null,
     getScrollControl: null,
     getIScroll: null,
+    scrollDownControl: null,
+    scrollUpControl: null,
     mustScroll: false
   }
+  scrollUpState = true
+  scrollDownState = true
   scrollView = null
   iScroll = null
   _renderTopRefreshControl = this._renderTopRefreshControl.bind(this)
@@ -110,9 +116,51 @@ class ScrollView extends React.Component {
     if (this.props.getScrollControl) { this.props.getScrollControl(this._setScrollControl) }
     if (self.props.beforeScrollStart) { this.iScroll.on('beforeScrollStart', function () { self.props.beforeScrollStart(this) }) }
     if (self.props.scrollStart) { this.iScroll.on('scrollStart', function () { self.props.scrollStart(this) }) }
-    if (self.props.scroll) { this.iScroll.on('scroll', function () { self.props.scroll(this) }) }
-    if (self.props.scrollEnd) { this.iScroll.on('scrollEnd', function () { self.props.scrollEnd(this) }) }
+    // this.iScroll.on('scrollStart', function () { self._scrollStart(this) })
+    // if (self.props.scroll) { this.iScroll.on('scroll', function () { self.props.scroll(this) }) }
+    this.iScroll.on('scroll', function () { self._scroll(this) })
+    // if (self.props.scrollEnd) { this.iScroll.on('scrollEnd', function () { self.props.scrollEnd(this) }) }
+    this.iScroll.on('scrollEnd', function () { self._scrollEnd(this) })
     if (self.props.scrollCancel) { this.iScroll.on('scrollCancel', function () { self.props.scrollCancel(this) }) }
+  }
+  _scrollEnd =(scroll) => {
+    if (this.props.scrollUpControl) {
+      if (scroll.y <= scroll.maxScrollY) {
+        if (this.scrollUpState) {
+          this.props.scrollUpControl(scroll)
+          this.scrollUpState = false
+          setTimeout(() => {
+            this.scrollUpState = true
+          }, 1000)
+        }
+      }
+    }
+    if (this.props.scrollEnd) { this.props.scrollEnd(scroll) }
+  }
+  _scroll =(scroll) => {
+    if (this.props.scrollUpControl) {
+      if (scroll.y <= scroll.maxScrollY) {
+        if (this.scrollUpState) {
+          this.props.scrollUpControl(scroll)
+          this.scrollUpState = false
+          setTimeout(() => {
+            this.scrollUpState = true
+          }, 1000)
+        }
+      }
+    }
+    if (this.props.scrollDownControl) {
+      if (scroll.y >= 40) {
+        if (this.scrollDownState) {
+          this.props.scrollDownControl(scroll)
+          this.scrollDownState = false
+          setTimeout(() => {
+            this.scrollDownState = true
+          }, 1000)
+        }
+      }
+    }
+    if (this.props.scroll) { this.props.scroll(scroll) }
   }
   componentDidUpdate () {
     if (this.iScroll) {

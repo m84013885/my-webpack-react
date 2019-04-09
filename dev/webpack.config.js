@@ -11,7 +11,7 @@ const webpackConfig = {
     new webpack.HotModuleReplacementPlugin(),
     // new HtmlWebpackPlugin({
     //     template: path.resolve(__dirname, '../src/router/index/index.html')
-    // }),
+    // })
     new webpack.ProvidePlugin({
       React: 'react',
       ReactDom: 'react-dom',
