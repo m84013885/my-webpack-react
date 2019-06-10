@@ -3,15 +3,10 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const webpack = require('webpack')
 const { routers } = require('../config.json')
 const webpackConfig = {
-  entry: {
-    // index:[`./src/router/index/index.js`,`webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000`]
-  },
+  entry: {},
   devtool: 'inline-source-map',
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    // new HtmlWebpackPlugin({
-    //     template: path.resolve(__dirname, '../src/router/index/index.html')
-    // })
     new webpack.ProvidePlugin({
       React: 'react',
       ReactDom: 'react-dom',
