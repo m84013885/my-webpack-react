@@ -49,6 +49,7 @@
     "mobx": "^5.10.1",
     "mobx-react": "^6.0.3",
     "react": "^16.8.6",
-    "react-dom": "^16.8.6"
+    "react-dom": "^16.8.6",
+    "whatwg-fetch": "^3.0.0"
   }
 }
