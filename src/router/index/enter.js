@@ -1,7 +1,7 @@
 'use strict'
 import stores from './stores'
 import { Provider } from 'mobx-react' // 供应stores
-import { App, View } from '../../components/src'
+import { App, View } from '../../components'
 
 import Main from './main'
 

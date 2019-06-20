@@ -2,4 +2,5 @@
     width: 200rpx;
     height: 200rpx;
     background-image: url('../../../images/index/alipay.png');
+    background-size: 100% 100%;
 }

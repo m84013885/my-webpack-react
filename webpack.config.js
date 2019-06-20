@@ -1,12 +1,14 @@
 /* eslint-disable */
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const CleanWebpackPlugin = require('clean-webpack-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const webpack = require('webpack')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const miniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const { routers } = require('./config.json')
+const nodeModuleDir = path.resolve(process.cwd(), 'node_module')
+const appDir = path.resolve(process.cwd(), 'src')
 
 const webpackConfig = {
   performance: { maxEntrypointSize: 400000 },
@@ -23,17 +25,26 @@ const webpackConfig = {
     rules: [
       {
         test: /\.(m?js|jsx)$/,
-        exclude: /(node_modules|bower_components)/,
+        include: [appDir],
+        exclude: [nodeModuleDir],
         use: {
           loader: 'babel-loader'
         }
       },
       {
-        test: /\.css$/,
-        exclude: /(swiper|node_modules|bower_components)/,
+        test: new RegExp(`^(?!.*\\.common).*\\.css`),
+        include: [appDir],
+        exclude: [nodeModuleDir],
         use: [
           miniCssExtractPlugin.loader,
-          'css-loader?modules&localIdentName=_[local]_[hash:base64:5]',
+          {
+            loader:'css-loader',
+            options: {
+              modules: {
+                localIdentName: '_[local]_[hash:base64:5]'
+              }
+            }
+          },
           {
             loader: 'postcss-loader',
             options: {
@@ -44,8 +55,9 @@ const webpackConfig = {
         ]
       },
       {
-        test: /\.css$/,
-        include: /(swiper)/,
+        test: new RegExp(`^(.*\\.common).*\\.css`),
+        include: [appDir],
+        exclude: [nodeModuleDir],
         use: [
           miniCssExtractPlugin.loader,
           'css-loader'
@@ -53,7 +65,8 @@ const webpackConfig = {
       },
       {
         test: /\.(gif|png|jpe?g|svg)$/,
-        exclude: /(node_modules|bower_components)/,
+        include: [appDir],
+        exclude: [nodeModuleDir],
         use: [
           {
             loader:'url-loader',
@@ -95,7 +108,7 @@ const webpackConfig = {
       name: 'react',
       cacheGroups: {
         vendors: {
-          test: /\/node_modules\//,
+          test: nodeModuleDir,
           priority: -10
         },
         'react-vendor': {

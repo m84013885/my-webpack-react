@@ -1,6 +1,6 @@
 import ThirdSwiper from './swiper'
 import View from '../view'
-import  './swiper.min.css'
+import './swiper.common.css'
 class Swiper extends React.Component {
   static propTypes = {
     // list: PropTypes.array.isRequired, // 播放列表

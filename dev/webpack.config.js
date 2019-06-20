@@ -2,6 +2,8 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const webpack = require('webpack')
 const { routers } = require('../config.json')
+const nodeModuleDir = path.resolve(process.cwd(), 'node_module')
+const appDir = path.resolve(process.cwd(), 'src')
 const webpackConfig = {
   entry: {},
   devtool: 'inline-source-map',
@@ -20,17 +22,26 @@ const webpackConfig = {
     rules: [
       {
         test: /\.(m?js|jsx)$/,
-        exclude: /(node_modules|bower_components)/,
+        include: [appDir],
+        exclude: [nodeModuleDir],
         use: {
           loader: 'babel-loader'
         }
       },
       {
-        test: /\.css$/,
-        exclude: /(swiper)/,
+        test: new RegExp(`^(?!.*\\.common).*\\.css`),
+        include: [appDir],
+        exclude: [nodeModuleDir],
         use: [
           'style-loader',
-          'css-loader?modules&localIdentName=_[local]_[hash:base64:5]',
+          {
+            loader: 'css-loader',
+            options: {
+              modules: {
+                localIdentName: '_[local]_[hash:base64:5]'
+              }
+            }
+          },
           {
             loader: 'postcss-loader',
             options: {
@@ -41,8 +52,9 @@ const webpackConfig = {
         ]
       },
       {
-        test: /\.css$/,
-        include: /(swiper)/,
+        test: new RegExp(`^(.*\\.common).*\\.css`),
+        include: [appDir],
+        exclude: [nodeModuleDir],
         use: [
           'style-loader',
           'css-loader',
@@ -57,6 +69,8 @@ const webpackConfig = {
       },
       {
         test: /\.(png|svg|jpg|gif)$/,
+        include: [appDir],
+        exclude: [nodeModuleDir],
         use: [
           'file-loader'
         ]

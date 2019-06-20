@@ -1,7 +1,7 @@
 'use strict'
 import { observer, inject } from 'mobx-react'
 import style from './style.css'
-import { View } from '../../../components/src'
+import { View } from '../../../components'
 
 @inject('store') @observer class Main extends React.Component {
   static propTypes = {

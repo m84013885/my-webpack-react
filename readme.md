@@ -1,20 +1,25 @@
 # 多(单)页面webpack+react+mobx（内含eslint）
 
-## 2019-3-27
-### 增加自定义组件与自定义方法（自定义组件：View,App,ScrollView。自定义方法：window.Qapp.showToast,window.Qapp.copy)
+## 2019-6-20
+### 优化打包方式，加入core-js与whatwg-fetch增加设备的兼容性
+### (发现一个bug，打包文件夹如果名字中有react字样，css不会自动分配)
+
+## 2019-4-9
+### ScrollView组件新增上下拉刷新的回调方法
+
+## 2019-4-6
+### 新增swiper组件(直接引入的方式)
+
+## 2019-4-3
+### webpack新增图片压缩
 
 ## 2019-4-2
 ### 优化常用组件与方法（优化内容：ScrollView，优化方法：window.Qapp.copy)
 ### 增加特殊组件（特殊组件：circle)
 
-## 2019-4-3
-### webpack新增图片压缩
+## 2019-3-27
+### 增加自定义组件与自定义方法（自定义组件：View,App,ScrollView。自定义方法：window.Qapp.showToast,window.Qapp.copy)
 
-## 2019-4-6
-### 新增swiper组件(直接引入的方式)
-
-## 2019-4-9
-### ScrollView组件新增上下拉刷新的回调方法
 ----
 
 ### 组件
