@@ -77,6 +77,28 @@ import style from './style.css'
       context.stroke() // 执行绘制
       context.restore()
     }
+    // 根据屏幕大小缩放笔触，使得画出来内容变清晰
+    function scale () {
+      const devicePixelRatio = window.devicePixelRatio || 1
+      const backingStorePixelRatio = context.webkitBackingStorePixelRatio ||
+        context.mozBackingStorePixelRatio ||
+        context.msBackingStorePixelRatio ||
+        context.oBackingStorePixelRatio ||
+        context.backingStorePixelRatio || 1
+
+      const ratio = devicePixelRatio / backingStorePixelRatio;
+      if (devicePixelRatio !== backingStorePixelRatio) {
+        const oldWidth = canvas.width
+        const oldHeight = canvas.height
+
+        canvas.width = oldWidth * ratio
+        canvas.height = oldHeight * ratio
+
+        canvas.style.width = `${oldWidth}px`
+        canvas.style.height = `${oldHeight}px`
+        context.scale(ratio, ratio)
+      }
+    }
     // 动画循环
     function drawFrame () {
       context.clearRect(0, 0, canvas.width, canvas.height)
@@ -90,6 +112,7 @@ import style from './style.css'
       }
       speed += step
     }
+    scale()
     drawFrame()
   }
   canvasDOM = this.canvasDOM.bind(this)
