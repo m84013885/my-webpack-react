@@ -21,4 +21,3 @@ const main = function () {
 window.onload = function () {
   main()
 }
-
